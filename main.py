@@ -30,7 +30,7 @@ if uploaded_file is not None:
     if len(numeric_cols) < 2:
         st.warning("El archivo debe contener al menos dos columnas numericas.")
     else:
-        st.sidebar.header("confifuracion del modelo")
+        st.sidebar.header("configuracion del modelo")
 
         # Seleccionar columnas a usar
         selected_cols = st.sidebar.multiselect(
@@ -38,6 +38,8 @@ if uploaded_file is not None:
             numeric_cols,
             default=numeric_cols
         )
+
+    if len(selected_cols)>= 2:
 
 
         k = st.sidebar.slider("numero de clusters (k):", 1, 10, 3)
@@ -72,8 +74,11 @@ if uploaded_file is not None:
         pca_df = pd.DataFrame(X_pca, columns=pca_cols)
         pca_df['Cluster'] = data['Cluster']
 
+
+
         # --- VisualizaciÃ³n antes del clustering ---
         st.subheader("distribucion original (antes de K-Means)")
+
         if n_components == 2:
             fig_before = px.scatter(
                 pca_df,
@@ -114,6 +119,8 @@ if uploaded_file is not None:
                 title="Clusters visualizados en 3D con PCA",
                 color_discrete_sequence=px.colors.qualitative.Vivid
             )
+
+
         st.plotly_chart(fig_after, use_container_width=True)
 
         # --- Centroides ---
@@ -150,6 +157,8 @@ if uploaded_file is not None:
             file_name="datos_clusterizados.csv",
             mime="text/csv"
         )
+    else:
+        st.warning("debe escoger al menos dos columnas numericas y 3 para PCA 3D.")
 
 else:
     st.info("Carga un archivo CSV en la barra lateral para comenzar.")

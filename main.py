@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 # ConfiguraciÃ³n de la app
 st.set_page_config(page_title="K-Means con PCA y Comparativa", layout="wide")
 st.title("lustering Interactivo con K-Means y PCA (comparacion Antes/despues)")
+st.subheader("Oziel Velazquez ITC #746441 ")
 st.write("""
 Sube tus datos, aplica **K-Means**, y observa como el algoritmo agrupa los puntos en un espacio reducido con **PCA (2D o 3D)**.  
 tambien puedes comparar la distribuciones **antes y despues del clustering.
